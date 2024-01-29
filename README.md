@@ -4,6 +4,7 @@
 
 <img src="https://img.shields.io/badge/Java-17-important.svg?logo=java" alt="shield referente a versao do java"><img src="https://img.shields.io/badge/Build Tool-Gradle-green.svg?logo=gradle" alt="shield referente ao uso de gradle">[<img src="https://img.shields.io/badge/dockerhub-images-blue.svg?logo=docker" alt="shield referente ao docker hub">](https://hub.docker.com/repository/docker/danielmaria/postech-clientes/general) <img src="https://img.shields.io/badge/Orchestrated by-Kubernetes-green.svg?logo=kubernetes" alt="shield referente ao uso de kubernetes">
 [<img src="https://img.shields.io/badge/dockerhub-images-blue.svg?logo=docker" alt="shield referente ao docker hub">](https://hub.docker.com/repository/docker/danielmaria/postech-clientes/general)
+
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=postech-lanchonete_postech-clientes&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=postech-lanchonete_postech-clientes)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=postech-lanchonete_postech-clientes&metric=coverage)](https://sonarcloud.io/summary/new_code?id=postech-lanchonete_postech-clientes)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=postech-lanchonete_postech-clientes&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=postech-lanchonete_postech-clientes)
@@ -20,7 +21,7 @@ ____
 </p>
 
 <p align="center">
-  <img src="https://github.com/postech-lanchonete/lanchonete-backend/assets/20681811/15ad5f82-7b39-43d9-8f4b-b0778f9daeb2" />
+  <img src="https://github.com/postech-lanchonete/postech-clientes/assets/20681811/bddf7055-e20f-4585-acc9-59ef9c0cd82c" />
 </p>
 
 
