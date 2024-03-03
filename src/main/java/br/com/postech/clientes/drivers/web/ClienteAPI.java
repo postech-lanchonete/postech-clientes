@@ -1,6 +1,6 @@
 package br.com.postech.clientes.drivers.web;
 
-import br.com.postech.clientes.adapters.dto.ClienteResponseDTO;
+import br.com.postech.clientes.adapters.dto.ClienteDTO;
 import br.com.postech.clientes.adapters.dto.CriacaoClienteDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -22,7 +22,7 @@ public interface ClienteAPI {
             @ApiResponse(responseCode = "202", description = "Cliente criado." ),
             @ApiResponse(responseCode = "400", description = "Algum dos atributos está incorreto.", content = { @Content(schema = @Schema()) })
     })
-    ClienteResponseDTO criar(CriacaoClienteDTO cliente);
+    ClienteDTO criar(CriacaoClienteDTO cliente);
 
     @Operation(
             summary = "Buscar cliente por CPF",
@@ -32,6 +32,6 @@ public interface ClienteAPI {
             @ApiResponse(responseCode = "200", description = "Cliente encontrado." ),
             @ApiResponse(responseCode = "400", description = "Não existe nenhum cliente registrado no sistema com este CPF informado.", content = { @Content(schema = @Schema()) })
     })
-    ClienteResponseDTO buscarPorCPF(String cpf);
+    ClienteDTO buscarPorCPF(String cpf);
 
 }

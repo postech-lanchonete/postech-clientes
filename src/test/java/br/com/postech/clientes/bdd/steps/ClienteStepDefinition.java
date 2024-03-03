@@ -1,6 +1,6 @@
 package br.com.postech.clientes.bdd.steps;
 
-import br.com.postech.clientes.adapters.dto.ClienteResponseDTO;
+import br.com.postech.clientes.adapters.dto.ClienteDTO;
 import br.com.postech.clientes.adapters.dto.CriacaoClienteDTO;
 import br.com.postech.clientes.bdd.helper.RequestHelper;
 import io.cucumber.java.pt.Dado;
@@ -16,25 +16,25 @@ import java.util.Objects;
 
 public class ClienteStepDefinition {
 
-    private RequestHelper<ClienteResponseDTO> requestHelper;
+    private RequestHelper<ClienteDTO> requestHelper;
 
     @Dado("que exista um cliente registrado no sistema com o CPF {string}")
     public void queExistaUmClienteRegistradoNoSistemaComOCPF(String cpf) {
         this.requestHelper = RequestHelper
-                .realizar("/v1/clientes/" + cpf, HttpMethod.GET, null, ClienteResponseDTO.class);
+                .realizar("/v1/clientes/" + cpf, HttpMethod.GET, null, ClienteDTO.class);
     }
 
     @Quando("for realizado uma busca nos clientes pelo CPF {string}")
     public void forRealizadoUmaBuscaNosClientesPeloCPF(String cpf) {
         this.requestHelper = RequestHelper
-                .realizar("/v1/clientes/" + cpf, HttpMethod.GET, null, ClienteResponseDTO.class);
+                .realizar("/v1/clientes/" + cpf, HttpMethod.GET, null, ClienteDTO.class);
     }
 
     @Quando("for requisitado a criacao de um cliente com o nome igual a {string}, sobrenome igual a {string} e cpf igual a {string} e email {string}")
     public void forRequisitadoACriacaoDeUmClienteComONomeIgualASobrenomeIgualAECpfIgualAEEmail(String nome, String sobrenome, String cpf, String email) {
         var dto = criarClienteDto(nome, sobrenome, cpf, email);
         this.requestHelper = RequestHelper
-                .realizar("/v1/clientes", HttpMethod.POST, dto, ClienteResponseDTO.class);
+                .realizar("/v1/clientes", HttpMethod.POST, dto, ClienteDTO.class);
     }
 
     @Entao("deve retornar um cliente")
@@ -54,7 +54,7 @@ public class ClienteStepDefinition {
     @Dado("que nao exista um cliente registrado no sistema com o CPF {string}")
     public void queNaoExistaUmClienteRegistradoNoSistemaComOCPF(String cpf) {
         RequestHelper
-                .realizar("/v1/clientes/" + cpf, HttpMethod.GET, null, ClienteResponseDTO.class)
+                .realizar("/v1/clientes/" + cpf, HttpMethod.GET, null, ClienteDTO.class)
                 .validaStatusEqualsTo(HttpStatus.NOT_FOUND);
     }
 

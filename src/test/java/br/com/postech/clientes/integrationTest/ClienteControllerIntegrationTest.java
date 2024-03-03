@@ -15,6 +15,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.UUID;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -81,6 +83,7 @@ class ClienteControllerIntegrationTest {
     @Test
     void criarCliente_deveRetornar422_AoInserirClienteComNomeSobrenomeCPFJaCadastrado() throws Exception {
         Cliente cliente = new Cliente();
+        cliente.setAtivo(true);
         cliente.setNome("Cliente");
         cliente.setSobrenome("Teste");
         cliente.setCpf("1234567891");
@@ -102,19 +105,21 @@ class ClienteControllerIntegrationTest {
 
     @Test
     void buscarPorCPF_deveRetornarClienteExistente() throws Exception {
+        var randomText = UUID.randomUUID().toString();
         Cliente cliente = new Cliente();
-        cliente.setNome("Cliente");
+        cliente.setAtivo(true);
+        cliente.setNome(randomText);
         cliente.setSobrenome("Teste");
-        cliente.setEmail("teste.teste@test.com");
-        cliente.setCpf("1234567891");
+        cliente.setEmail(randomText + "@test.com");
+        cliente.setCpf(randomText);
         clienteRepository.save(cliente);
 
-        mockMvc.perform(get("/v1/clientes/{cpf}", "1234567891"))
+        mockMvc.perform(get("/v1/clientes/{cpf}", randomText))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.nome").value("Cliente"))
+                .andExpect(jsonPath("$.nome").value(randomText))
                 .andExpect(jsonPath("$.sobrenome").value("Teste"))
-                .andExpect(jsonPath("$.email").value("teste.teste@test.com"))
-                .andExpect(jsonPath("$.cpf").value("1234567891"));
+                .andExpect(jsonPath("$.email").value(randomText + "@test.com"))
+                .andExpect(jsonPath("$.cpf").value(randomText));
     }
 
     @Test

@@ -6,7 +6,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @SuppressWarnings("unused")
-public class ClienteResponseDTO {
+public class ClienteDTO {
+    private Long id;
     private String nome;
     private String sobrenome;
     private String email;

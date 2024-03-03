@@ -25,4 +25,9 @@ public class ClienteGatewayImpl implements ClienteGateway {
     public List<Cliente> buscarPor(Example<Cliente> clienteExample) {
         return clienteRepository.findAll(clienteExample);
     }
+
+    @Override
+    public void delete(Long id) {
+        clienteRepository.deleteById(id);
+    }
 }

@@ -1,7 +1,7 @@
 package br.com.postech.clientes.adapters.controllers;
 
 import br.com.postech.clientes.adapters.adapter.ClienteAdapter;
-import br.com.postech.clientes.adapters.dto.ClienteResponseDTO;
+import br.com.postech.clientes.adapters.dto.ClienteDTO;
 import br.com.postech.clientes.adapters.dto.CriacaoClienteDTO;
 import br.com.postech.clientes.business.usecases.UseCase;
 import br.com.postech.clientes.core.entities.Cliente;
@@ -33,7 +33,7 @@ public class ClienteController implements ClienteAPI {
     @Override
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ClienteResponseDTO criar(@Valid @RequestBody CriacaoClienteDTO criacaoClienteDTO) {
+    public ClienteDTO criar(@Valid @RequestBody CriacaoClienteDTO criacaoClienteDTO) {
         Cliente cliente = clienteAdapter.toEntity(criacaoClienteDTO);
         Cliente clienteCriado = criarUseCase.realizar(cliente);
         return clienteAdapter.toDto(clienteCriado);
@@ -41,7 +41,7 @@ public class ClienteController implements ClienteAPI {
 
     @Override
     @GetMapping("/{cpf}")
-    public ClienteResponseDTO buscarPorCPF(@PathVariable String cpf) {
+    public ClienteDTO buscarPorCPF(@PathVariable String cpf) {
         Cliente cliente = clienteAdapter.toEntity(cpf);
         Cliente clienteEncontrado = buscarPorCpfUseCase.realizar(cliente);
         return clienteAdapter.toDto(clienteEncontrado);
