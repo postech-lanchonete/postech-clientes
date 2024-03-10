@@ -5,8 +5,6 @@ import br.com.postech.clientes.adapters.dto.ClienteDTO;
 import br.com.postech.clientes.adapters.dto.CriacaoOperacaoBackOfficeDTO;
 import br.com.postech.clientes.adapters.gateways.BackOfficeGateway;
 import br.com.postech.clientes.adapters.gateways.ClienteGateway;
-import br.com.postech.clientes.business.exceptions.NotFoundException;
-import br.com.postech.clientes.business.usecases.implementation.BackOfficeRealizarOperacaoUseCase;
 import br.com.postech.clientes.core.entities.BackOfficeOperacao;
 import br.com.postech.clientes.core.entities.Cliente;
 import br.com.postech.clientes.core.enums.OperacaoBackOffice;
@@ -18,11 +16,12 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.data.domain.Example;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.anyLong;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class BackOfficeRealizarOperacaoUseCaseTest {
 

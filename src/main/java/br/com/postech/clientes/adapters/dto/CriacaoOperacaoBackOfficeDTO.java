@@ -2,7 +2,6 @@ package br.com.postech.clientes.adapters.dto;
 
 import br.com.postech.clientes.core.enums.OperacaoBackOffice;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

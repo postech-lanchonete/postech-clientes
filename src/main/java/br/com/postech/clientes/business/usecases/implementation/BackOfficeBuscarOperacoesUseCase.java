@@ -1,11 +1,8 @@
 package br.com.postech.clientes.business.usecases.implementation;
 
 import br.com.postech.clientes.adapters.gateways.BackOfficeGateway;
-import br.com.postech.clientes.adapters.gateways.ClienteGateway;
-import br.com.postech.clientes.business.exceptions.NotFoundException;
 import br.com.postech.clientes.business.usecases.UseCase;
 import br.com.postech.clientes.core.entities.BackOfficeOperacao;
-import br.com.postech.clientes.core.entities.Cliente;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Component;
 

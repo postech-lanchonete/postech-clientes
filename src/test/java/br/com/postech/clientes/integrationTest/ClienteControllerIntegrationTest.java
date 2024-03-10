@@ -1,8 +1,8 @@
 package br.com.postech.clientes.integrationTest;
 
 import br.com.postech.clientes.adapters.dto.CriacaoClienteDTO;
-import br.com.postech.clientes.core.entities.Cliente;
 import br.com.postech.clientes.adapters.repositories.ClienteRepository;
+import br.com.postech.clientes.core.entities.Cliente;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

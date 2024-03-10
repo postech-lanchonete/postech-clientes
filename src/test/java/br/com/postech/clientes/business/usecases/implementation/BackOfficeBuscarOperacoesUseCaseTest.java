@@ -1,7 +1,6 @@
 package br.com.postech.clientes.business.usecases.implementation;
 
 import br.com.postech.clientes.adapters.gateways.BackOfficeGateway;
-import br.com.postech.clientes.business.usecases.implementation.BackOfficeBuscarOperacoesUseCase;
 import br.com.postech.clientes.core.entities.BackOfficeOperacao;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,7 +13,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class BackOfficeBuscarOperacoesUseCaseTest {
 
