@@ -7,17 +7,17 @@ import br.com.postech.clientes.core.entities.Cliente;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Component;
 
-@Component("clienteBuscarPorCpfUseCase")
-public class ClienteBuscarPorCpfUseCase implements UseCase<Cliente, Cliente> {
+@Component("clienteBuscarPorIdUseCase")
+public class ClienteBuscarPorIdUseCase implements UseCase<Cliente, Cliente> {
 
     private final ClienteGateway clienteGateway;
 
-    public ClienteBuscarPorCpfUseCase(ClienteGateway clienteGateway) {
+    public ClienteBuscarPorIdUseCase(ClienteGateway clienteGateway) {
         this.clienteGateway = clienteGateway;
     }
     @Override
-    public Cliente realizar(Cliente cpf) {
-        return clienteGateway.buscarPor(Example.of(cpf))
+    public Cliente realizar(Cliente cliente) {
+        return clienteGateway.buscarPor(Example.of(cliente))
                 .stream()
                 .findFirst()
                 .orElseThrow(() -> new NotFoundException("Cliente não encontrado"));

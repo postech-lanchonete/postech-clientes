@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @RequestMapping("/v1/clientes")
@@ -32,6 +33,6 @@ public interface ClienteAPI {
             @ApiResponse(responseCode = "200", description = "Cliente encontrado." ),
             @ApiResponse(responseCode = "400", description = "Não existe nenhum cliente registrado no sistema com este CPF informado.", content = { @Content(schema = @Schema()) })
     })
-    ClienteDTO buscarPorCPF(String cpf);
+    ClienteDTO buscarPorId(@PathVariable Long id);
 
 }

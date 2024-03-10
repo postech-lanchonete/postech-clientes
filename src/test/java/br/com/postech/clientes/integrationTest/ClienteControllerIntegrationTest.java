@@ -107,6 +107,7 @@ class ClienteControllerIntegrationTest {
     void buscarPorCPF_deveRetornarClienteExistente() throws Exception {
         var randomText = UUID.randomUUID().toString();
         Cliente cliente = new Cliente();
+        cliente.setId(1L);
         cliente.setAtivo(true);
         cliente.setNome(randomText);
         cliente.setSobrenome("Teste");
@@ -114,7 +115,7 @@ class ClienteControllerIntegrationTest {
         cliente.setCpf(randomText);
         clienteRepository.save(cliente);
 
-        mockMvc.perform(get("/v1/clientes/{cpf}", randomText))
+        mockMvc.perform(get("/v1/clientes/{id}", 1L))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.nome").value(randomText))
                 .andExpect(jsonPath("$.sobrenome").value("Teste"))

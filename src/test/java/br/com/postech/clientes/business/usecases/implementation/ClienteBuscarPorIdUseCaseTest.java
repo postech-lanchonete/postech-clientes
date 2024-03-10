@@ -16,13 +16,13 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
-class ClienteBuscarPorCpfUseCaseTest {
+class ClienteBuscarPorIdUseCaseTest {
 
     @Mock
     private ClienteGateway clienteGateway;
 
     @InjectMocks
-    private ClienteBuscarPorCpfUseCase clienteBuscarPorCpfUseCase;
+    private ClienteBuscarPorIdUseCase clienteBuscarPorIdUseCase;
 
     @Test
     void realizar_DeveRetornarCliente_QuandoEncontradoPorCpf() {
@@ -31,7 +31,7 @@ class ClienteBuscarPorCpfUseCaseTest {
 
         when(clienteGateway.buscarPor(any(Example.class))).thenReturn(List.of(cliente));
 
-        Cliente resultado = clienteBuscarPorCpfUseCase.realizar(cliente);
+        Cliente resultado = clienteBuscarPorIdUseCase.realizar(cliente);
 
         assertNotNull(resultado);
         assertEquals(cliente, resultado);
@@ -45,7 +45,7 @@ class ClienteBuscarPorCpfUseCaseTest {
 
         when(clienteGateway.buscarPor(any(Example.class))).thenReturn(new ArrayList<>());
 
-        assertThrows(NotFoundException.class, () -> clienteBuscarPorCpfUseCase.realizar(cliente));
+        assertThrows(NotFoundException.class, () -> clienteBuscarPorIdUseCase.realizar(cliente));
         verify(clienteGateway, times(1)).buscarPor(any(Example.class));
     }
 }

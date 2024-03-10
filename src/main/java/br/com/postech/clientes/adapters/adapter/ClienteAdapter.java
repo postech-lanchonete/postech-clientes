@@ -15,10 +15,10 @@ public interface ClienteAdapter {
     @Mapping(target = "ativo", constant = "true")
     Cliente toEntity(CriacaoClienteDTO clienteDto);
 
-    default Cliente toEntity(String cpf) {
+    default Cliente toEntity(Long id) {
         Cliente cliente = new Cliente();
         cliente.setAtivo(true);
-        cliente.setCpf(cpf);
+        cliente.setId(id);
         return cliente;
     }
 }

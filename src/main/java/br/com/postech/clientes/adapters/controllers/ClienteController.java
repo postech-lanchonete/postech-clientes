@@ -18,14 +18,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ClienteController implements ClienteAPI {
-    private final UseCase<Cliente, Cliente> buscarPorCpfUseCase;
+    private final UseCase<Cliente, Cliente> buscarPorIdUseCase;
     private final UseCase<Cliente, Cliente> criarUseCase;
     private final ClienteAdapter clienteAdapter;
 
-    public ClienteController(@Qualifier("clienteBuscarPorCpfUseCase") UseCase<Cliente, Cliente> buscarPorCpfUseCase,
+    public ClienteController(@Qualifier("clienteBuscarPorIdUseCase") UseCase<Cliente, Cliente> buscarPorIdUseCase,
                              @Qualifier("clienteCriarUseCase") UseCase<Cliente, Cliente> criarUseCase,
                              ClienteAdapter clienteAdapter) {
-        this.buscarPorCpfUseCase = buscarPorCpfUseCase;
+        this.buscarPorIdUseCase = buscarPorIdUseCase;
         this.criarUseCase = criarUseCase;
         this.clienteAdapter = clienteAdapter;
     }
@@ -40,10 +40,10 @@ public class ClienteController implements ClienteAPI {
     }
 
     @Override
-    @GetMapping("/{cpf}")
-    public ClienteDTO buscarPorCPF(@PathVariable String cpf) {
-        Cliente cliente = clienteAdapter.toEntity(cpf);
-        Cliente clienteEncontrado = buscarPorCpfUseCase.realizar(cliente);
+    @GetMapping("/{id}")
+    public ClienteDTO buscarPorId(@PathVariable Long id) {
+        Cliente cliente = clienteAdapter.toEntity(id);
+        Cliente clienteEncontrado = buscarPorIdUseCase.realizar(cliente);
         return clienteAdapter.toDto(clienteEncontrado);
     }
 }
