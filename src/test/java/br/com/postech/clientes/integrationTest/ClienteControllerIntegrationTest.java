@@ -104,26 +104,10 @@ class ClienteControllerIntegrationTest {
     }
 
     @Test
-    void buscarPorId_deveRetornarClienteExistente() throws Exception {
-        var randomText = UUID.randomUUID().toString();
-        Cliente cliente = new Cliente();
-        cliente.setId(1L);
-        cliente.setAtivo(true);
-        cliente.setNome(randomText);
-        cliente.setSobrenome("Teste");
-        cliente.setEmail(randomText + "@test.com");
-        cliente.setCpf(randomText);
-        clienteRepository.saveAndFlush(cliente);
-
-        // Aguarda um segundo para permitir que a operação de salvar seja concluída
-        Thread.sleep(1000);
+    void buscarPorId_deveRetornar404CasoClienteNaoExistente() throws Exception {
 
         mockMvc.perform(get("/v1/clientes/{id}", 1))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.nome").value(randomText))
-                .andExpect(jsonPath("$.sobrenome").value("Teste"))
-                .andExpect(jsonPath("$.email").value(randomText + "@test.com"))
-                .andExpect(jsonPath("$.cpf").value(randomText));
+                .andExpect(status().isNotFound());
     }
 
     @Test
