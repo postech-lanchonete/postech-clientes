@@ -113,9 +113,9 @@ class ClienteControllerIntegrationTest {
         cliente.setSobrenome("Teste");
         cliente.setEmail(randomText + "@test.com");
         cliente.setCpf(randomText);
-        clienteRepository.save(cliente);
+        clienteRepository.saveAndFlush(cliente);
 
-        mockMvc.perform(get("/v1/clientes/{id}", 1L))
+        mockMvc.perform(get("/v1/clientes/{id}", 1))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.nome").value(randomText))
                 .andExpect(jsonPath("$.sobrenome").value("Teste"))
