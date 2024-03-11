@@ -104,7 +104,7 @@ class ClienteControllerIntegrationTest {
     }
 
     @Test
-    void buscarPorCPF_deveRetornarClienteExistente() throws Exception {
+    void buscarPorId_deveRetornarClienteExistente() throws Exception {
         var randomText = UUID.randomUUID().toString();
         Cliente cliente = new Cliente();
         cliente.setId(1L);
@@ -114,6 +114,9 @@ class ClienteControllerIntegrationTest {
         cliente.setEmail(randomText + "@test.com");
         cliente.setCpf(randomText);
         clienteRepository.saveAndFlush(cliente);
+
+        // Aguarda um segundo para permitir que a operação de salvar seja concluída
+        Thread.sleep(1000);
 
         mockMvc.perform(get("/v1/clientes/{id}", 1))
                 .andExpect(status().isOk())
