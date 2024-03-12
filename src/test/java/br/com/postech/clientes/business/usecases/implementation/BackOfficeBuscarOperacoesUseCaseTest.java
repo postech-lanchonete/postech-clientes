@@ -18,7 +18,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class BackOfficeBuscarOperacoesUseCaseTest {
+class BackOfficeBuscarOperacoesUseCaseTest {
 
     @Mock
     private BackOfficeGateway backOfficeGateway;
@@ -32,7 +32,7 @@ public class BackOfficeBuscarOperacoesUseCaseTest {
     }
 
     @Test
-    public void testRealizar() {
+    void testRealizar() {
         BackOfficeOperacao operacao1 = new BackOfficeOperacao();
         BackOfficeOperacao operacao2 = new BackOfficeOperacao();
         List<BackOfficeOperacao> operacoesMock = Arrays.asList(operacao1, operacao2);

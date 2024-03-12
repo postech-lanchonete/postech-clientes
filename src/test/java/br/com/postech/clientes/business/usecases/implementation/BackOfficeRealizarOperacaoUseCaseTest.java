@@ -23,7 +23,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class BackOfficeRealizarOperacaoUseCaseTest {
+class BackOfficeRealizarOperacaoUseCaseTest {
 
     @Mock
     private BackOfficeGateway backOfficeGateway;
@@ -43,7 +43,7 @@ public class BackOfficeRealizarOperacaoUseCaseTest {
     }
 
     @Test
-    public void testRealizarAnonimizacao() {
+    void testRealizarAnonimizacao() {
         CriacaoOperacaoBackOfficeDTO operacaoDTO = new CriacaoOperacaoBackOfficeDTO();
         operacaoDTO.setOperacao(OperacaoBackOffice.ANONIMIZACAO);
         operacaoDTO.setCliente(new ClienteDTO());
@@ -62,7 +62,7 @@ public class BackOfficeRealizarOperacaoUseCaseTest {
     }
 
     @Test
-    public void testRealizarExclusao() {
+    void testRealizarExclusao() {
         CriacaoOperacaoBackOfficeDTO operacaoDTO = new CriacaoOperacaoBackOfficeDTO();
         operacaoDTO.setOperacao(OperacaoBackOffice.EXCLUSAO);
         operacaoDTO.setCliente(new ClienteDTO());
@@ -81,7 +81,7 @@ public class BackOfficeRealizarOperacaoUseCaseTest {
     }
 
     @Test
-    public void testRealizarInativacao() {
+    void testRealizarInativacao() {
         CriacaoOperacaoBackOfficeDTO operacaoDTO = new CriacaoOperacaoBackOfficeDTO();
         operacaoDTO.setOperacao(OperacaoBackOffice.INATIVACAO);
         operacaoDTO.setCliente(new ClienteDTO());
@@ -100,7 +100,7 @@ public class BackOfficeRealizarOperacaoUseCaseTest {
     }
 
     @Test
-    public void testRealizarOperacaoNaoEncontrada() {
+    void testRealizarOperacaoNaoEncontrada() {
         CriacaoOperacaoBackOfficeDTO operacaoDTO = new CriacaoOperacaoBackOfficeDTO();
         operacaoDTO.setOperacao(OperacaoBackOffice.INATIVACAO);
         operacaoDTO.setCliente(new ClienteDTO());
