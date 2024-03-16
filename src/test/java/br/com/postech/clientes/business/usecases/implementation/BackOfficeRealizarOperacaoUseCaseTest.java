@@ -3,6 +3,7 @@ package br.com.postech.clientes.business.usecases.implementation;
 import br.com.postech.clientes.adapters.adapter.BackOfficeAdapter;
 import br.com.postech.clientes.adapters.dto.ClienteDTO;
 import br.com.postech.clientes.adapters.dto.CriacaoOperacaoBackOfficeDTO;
+import br.com.postech.clientes.adapters.gateways.BackOfficeComprovanteGateway;
 import br.com.postech.clientes.adapters.gateways.BackOfficeGateway;
 import br.com.postech.clientes.adapters.gateways.ClienteGateway;
 import br.com.postech.clientes.core.entities.BackOfficeOperacao;
@@ -27,6 +28,9 @@ class BackOfficeRealizarOperacaoUseCaseTest {
 
     @Mock
     private BackOfficeGateway backOfficeGateway;
+
+    @Mock
+    private BackOfficeComprovanteGateway backOfficeComprovanteGateway;
 
     @Mock
     private ClienteGateway clienteGateway;
