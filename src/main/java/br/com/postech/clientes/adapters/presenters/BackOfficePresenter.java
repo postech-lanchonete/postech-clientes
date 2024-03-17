@@ -1,4 +1,4 @@
-package br.com.postech.clientes.adapters.adapter;
+package br.com.postech.clientes.adapters.presenters;
 
 import br.com.postech.clientes.adapters.dto.CriacaoOperacaoBackOfficeDTO;
 import br.com.postech.clientes.adapters.dto.OperacaoBackOfficeDTO;
@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring", imports = {java.time.LocalDateTime.class})
-public interface BackOfficeAdapter {
+public interface BackOfficePresenter {
 
 
     @Mapping(target = "cliente.id", source = "clienteId")

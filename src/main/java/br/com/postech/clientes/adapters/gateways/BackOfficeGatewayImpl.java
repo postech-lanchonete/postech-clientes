@@ -1,6 +1,6 @@
-package br.com.postech.clientes.adapters.gateways.implementation;
+package br.com.postech.clientes.adapters.gateways;
 
-import br.com.postech.clientes.adapters.gateways.BackOfficeGateway;
+import br.com.postech.clientes.drivers.external.BackOfficeGateway;
 import br.com.postech.clientes.adapters.repositories.BackOfficeRepository;
 import br.com.postech.clientes.core.entities.BackOfficeOperacao;
 import org.springframework.data.domain.Example;

@@ -1,4 +1,4 @@
-package br.com.postech.clientes.adapters.adapter;
+package br.com.postech.clientes.adapters.presenters;
 
 import br.com.postech.clientes.adapters.dto.ClienteDTO;
 import br.com.postech.clientes.adapters.dto.CriacaoClienteDTO;
@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
-public interface ClienteAdapter {
+public interface ClientePresenter {
 
     ClienteDTO toDto(Cliente cliente);
 

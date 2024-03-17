@@ -1,6 +1,6 @@
 package br.com.postech.clientes.adapters.controllers;
 
-import br.com.postech.clientes.adapters.adapter.BackOfficeAdapter;
+import br.com.postech.clientes.adapters.presenters.BackOfficePresenter;
 import br.com.postech.clientes.adapters.dto.CriacaoOperacaoBackOfficeDTO;
 import br.com.postech.clientes.adapters.dto.OperacaoBackOfficeDTO;
 import br.com.postech.clientes.business.usecases.UseCase;
@@ -19,14 +19,14 @@ import java.util.List;
 public class BackOfficeController implements BackOfficeAPI {
     private final UseCase.SemEntrada<List<BackOfficeOperacao>> backOfficeBuscarOperacoesUseCase;
     private final UseCase<CriacaoOperacaoBackOfficeDTO, BackOfficeOperacao> backOfficeRealizarOperacaoUseCase;
-    private final BackOfficeAdapter backOfficeAdapter;
+    private final BackOfficePresenter backOfficePresenter;
 
     public BackOfficeController(@Qualifier("backOfficeBuscarOperacoesUseCase") UseCase.SemEntrada<List<BackOfficeOperacao>> backOfficeBuscarOperacoesUseCase,
                                 @Qualifier("backOfficeRealizarOperacaoUseCase") UseCase<CriacaoOperacaoBackOfficeDTO, BackOfficeOperacao> backOfficeRealizarOperacaoUseCase,
-                                BackOfficeAdapter backOfficeAdapter) {
+                                BackOfficePresenter backOfficePresenter) {
         this.backOfficeBuscarOperacoesUseCase = backOfficeBuscarOperacoesUseCase;
         this.backOfficeRealizarOperacaoUseCase = backOfficeRealizarOperacaoUseCase;
-        this.backOfficeAdapter = backOfficeAdapter;
+        this.backOfficePresenter = backOfficePresenter;
     }
 
     @Override
@@ -34,14 +34,14 @@ public class BackOfficeController implements BackOfficeAPI {
     public OperacaoBackOfficeDTO criarOperacao(@Valid @RequestBody CriacaoOperacaoBackOfficeDTO operacao) {
         operacao.isValidInput();
         BackOfficeOperacao backOfficeOperacao = backOfficeRealizarOperacaoUseCase.realizar(operacao);
-        return backOfficeAdapter.toDto(backOfficeOperacao);
+        return backOfficePresenter.toDto(backOfficeOperacao);
     }
 
     @Override
     @GetMapping
     public List<OperacaoBackOfficeDTO> buscarOperacoes() {
         return backOfficeBuscarOperacoesUseCase.realizar().stream()
-                .map(backOfficeAdapter::toDto)
+                .map(backOfficePresenter::toDto)
                 .toList();
     }
 }

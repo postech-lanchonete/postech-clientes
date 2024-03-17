@@ -1,11 +1,11 @@
 package br.com.postech.clientes.business.usecases.implementation;
 
-import br.com.postech.clientes.adapters.adapter.BackOfficeAdapter;
+import br.com.postech.clientes.adapters.presenters.BackOfficePresenter;
 import br.com.postech.clientes.adapters.dto.ClienteDTO;
 import br.com.postech.clientes.adapters.dto.CriacaoOperacaoBackOfficeDTO;
-import br.com.postech.clientes.adapters.gateways.BackOfficeComprovanteGateway;
-import br.com.postech.clientes.adapters.gateways.BackOfficeGateway;
-import br.com.postech.clientes.adapters.gateways.ClienteGateway;
+import br.com.postech.clientes.drivers.external.BackOfficeComprovanteGateway;
+import br.com.postech.clientes.drivers.external.BackOfficeGateway;
+import br.com.postech.clientes.drivers.external.ClienteGateway;
 import br.com.postech.clientes.core.entities.BackOfficeOperacao;
 import br.com.postech.clientes.core.entities.Cliente;
 import br.com.postech.clientes.core.enums.OperacaoBackOffice;
@@ -36,7 +36,7 @@ class BackOfficeRealizarOperacaoUseCaseTest {
     private ClienteGateway clienteGateway;
 
     @Mock
-    private BackOfficeAdapter backOfficeAdapter;
+    private BackOfficePresenter backOfficePresenter;
 
     @InjectMocks
     private BackOfficeRealizarOperacaoUseCase useCase;
@@ -56,12 +56,12 @@ class BackOfficeRealizarOperacaoUseCaseTest {
         cliente.setId(1L);
         when(clienteGateway.buscarPor(any(Example.class))).thenReturn(List.of(cliente));
 
-        when(backOfficeAdapter.toEntity(any(), anyLong())).thenReturn(new BackOfficeOperacao());
+        when(backOfficePresenter.toEntity(any(), anyLong())).thenReturn(new BackOfficeOperacao());
 
         useCase.realizar(operacaoDTO);
 
         verify(clienteGateway, times(1)).salvar(any());
-        verify(backOfficeAdapter, times(1)).toEntity(any(), anyLong());
+        verify(backOfficePresenter, times(1)).toEntity(any(), anyLong());
         verify(backOfficeGateway, times(1)).salvar(any());
     }
 
@@ -75,12 +75,12 @@ class BackOfficeRealizarOperacaoUseCaseTest {
         cliente.setId(1L);
         when(clienteGateway.buscarPor(any(Example.class))).thenReturn(List.of(cliente));
 
-        when(backOfficeAdapter.toEntity(any(), anyLong())).thenReturn(new BackOfficeOperacao());
+        when(backOfficePresenter.toEntity(any(), anyLong())).thenReturn(new BackOfficeOperacao());
 
         useCase.realizar(operacaoDTO);
 
         verify(clienteGateway, times(1)).delete(anyLong());
-        verify(backOfficeAdapter, times(1)).toEntity(any(), anyLong());
+        verify(backOfficePresenter, times(1)).toEntity(any(), anyLong());
         verify(backOfficeGateway, times(1)).salvar(any());
     }
 
@@ -94,12 +94,12 @@ class BackOfficeRealizarOperacaoUseCaseTest {
         cliente.setId(1L);
         when(clienteGateway.buscarPor(any(Example.class))).thenReturn(List.of(cliente));
 
-        when(backOfficeAdapter.toEntity(any(), anyLong())).thenReturn(new BackOfficeOperacao());
+        when(backOfficePresenter.toEntity(any(), anyLong())).thenReturn(new BackOfficeOperacao());
 
         useCase.realizar(operacaoDTO);
 
         verify(clienteGateway, times(1)).salvar(any());
-        verify(backOfficeAdapter, times(1)).toEntity(any(), anyLong());
+        verify(backOfficePresenter, times(1)).toEntity(any(), anyLong());
         verify(backOfficeGateway, times(1)).salvar(any());
     }
 
@@ -113,12 +113,12 @@ class BackOfficeRealizarOperacaoUseCaseTest {
         cliente.setId(1L);
         when(clienteGateway.buscarPor(any(Example.class))).thenReturn(List.of(cliente));
 
-        when(backOfficeAdapter.toEntity(any(), anyLong())).thenReturn(new BackOfficeOperacao());
+        when(backOfficePresenter.toEntity(any(), anyLong())).thenReturn(new BackOfficeOperacao());
 
         useCase.realizar(operacaoDTO);
 
         verify(clienteGateway, times(1)).salvar(any());
-        verify(backOfficeAdapter, times(1)).toEntity(any(), anyLong());
+        verify(backOfficePresenter, times(1)).toEntity(any(), anyLong());
         verify(backOfficeGateway, times(1)).salvar(any());
     }
 }

@@ -1,6 +1,6 @@
 package br.com.postech.clientes.adapters.controllers;
 
-import br.com.postech.clientes.adapters.adapter.ClienteAdapter;
+import br.com.postech.clientes.adapters.presenters.ClientePresenter;
 import br.com.postech.clientes.adapters.dto.ClienteDTO;
 import br.com.postech.clientes.adapters.dto.CriacaoClienteDTO;
 import br.com.postech.clientes.business.usecases.UseCase;
@@ -20,30 +20,30 @@ import org.springframework.web.bind.annotation.RestController;
 public class ClienteController implements ClienteAPI {
     private final UseCase<Cliente, Cliente> buscarPorIdUseCase;
     private final UseCase<Cliente, Cliente> criarUseCase;
-    private final ClienteAdapter clienteAdapter;
+    private final ClientePresenter clientePresenter;
 
     public ClienteController(@Qualifier("clienteBuscarPorIdUseCase") UseCase<Cliente, Cliente> buscarPorIdUseCase,
                              @Qualifier("clienteCriarUseCase") UseCase<Cliente, Cliente> criarUseCase,
-                             ClienteAdapter clienteAdapter) {
+                             ClientePresenter clientePresenter) {
         this.buscarPorIdUseCase = buscarPorIdUseCase;
         this.criarUseCase = criarUseCase;
-        this.clienteAdapter = clienteAdapter;
+        this.clientePresenter = clientePresenter;
     }
 
     @Override
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ClienteDTO criar(@Valid @RequestBody CriacaoClienteDTO criacaoClienteDTO) {
-        Cliente cliente = clienteAdapter.toEntity(criacaoClienteDTO);
+        Cliente cliente = clientePresenter.toEntity(criacaoClienteDTO);
         Cliente clienteCriado = criarUseCase.realizar(cliente);
-        return clienteAdapter.toDto(clienteCriado);
+        return clientePresenter.toDto(clienteCriado);
     }
 
     @Override
     @GetMapping("/{id}")
     public ClienteDTO buscarPorId(@PathVariable Long id) {
-        Cliente cliente = clienteAdapter.toEntity(id);
+        Cliente cliente = clientePresenter.toEntity(id);
         Cliente clienteEncontrado = buscarPorIdUseCase.realizar(cliente);
-        return clienteAdapter.toDto(clienteEncontrado);
+        return clientePresenter.toDto(clienteEncontrado);
     }
 }

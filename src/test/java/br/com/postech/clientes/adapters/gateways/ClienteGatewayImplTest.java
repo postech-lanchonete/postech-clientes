@@ -1,4 +1,4 @@
-package br.com.postech.clientes.adapters.gateways.implementation;
+package br.com.postech.clientes.adapters.gateways;
 
 import br.com.postech.clientes.adapters.repositories.ClienteRepository;
 import br.com.postech.clientes.core.entities.Cliente;

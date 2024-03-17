@@ -1,4 +1,4 @@
-package br.com.postech.clientes.adapters.gateways.implementation;
+package br.com.postech.clientes.adapters.gateways;
 
 import br.com.postech.clientes.adapters.repositories.ClienteRepository;
 import br.com.postech.clientes.core.entities.BackOfficeOperacao;
@@ -69,6 +69,21 @@ public class BackOfficeComprovanteGatewayImplTest {
                     "CPF: 123456789\n";
             String fileContent = scanner.useDelimiter("\\A").next();
             assertEquals(expectedContent, fileContent);
+        } finally {
+            File dir = new File("comprovantes");
+            deleteDirectory(dir);
         }
+    }
+
+    private static void deleteDirectory(File dir) {
+        if (dir.isDirectory()) {
+            File[] children = dir.listFiles();
+            if (children != null) {
+                for (File child : children) {
+                    deleteDirectory(child);
+                }
+            }
+        }
+        dir.delete();
     }
 }

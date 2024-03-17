@@ -1,10 +1,10 @@
 package br.com.postech.clientes.business.usecases.implementation;
 
-import br.com.postech.clientes.adapters.adapter.BackOfficeAdapter;
+import br.com.postech.clientes.adapters.presenters.BackOfficePresenter;
 import br.com.postech.clientes.adapters.dto.CriacaoOperacaoBackOfficeDTO;
-import br.com.postech.clientes.adapters.gateways.BackOfficeComprovanteGateway;
-import br.com.postech.clientes.adapters.gateways.BackOfficeGateway;
-import br.com.postech.clientes.adapters.gateways.ClienteGateway;
+import br.com.postech.clientes.drivers.external.BackOfficeComprovanteGateway;
+import br.com.postech.clientes.drivers.external.BackOfficeGateway;
+import br.com.postech.clientes.drivers.external.ClienteGateway;
 import br.com.postech.clientes.business.exceptions.NotFoundException;
 import br.com.postech.clientes.business.usecases.UseCase;
 import br.com.postech.clientes.core.entities.BackOfficeOperacao;
@@ -22,15 +22,15 @@ public class BackOfficeRealizarOperacaoUseCase implements UseCase<CriacaoOperaca
     private final BackOfficeComprovanteGateway backOfficeComprovanteGateway;
     private final ClienteGateway clienteGateway;
 
-    private final BackOfficeAdapter backOfficeAdapter;
+    private final BackOfficePresenter backOfficePresenter;
 
     public BackOfficeRealizarOperacaoUseCase(BackOfficeGateway backOfficeGateway,
                                              BackOfficeComprovanteGateway backOfficeComprovanteGateway,
-                                             ClienteGateway clienteGateway, BackOfficeAdapter backOfficeAdapter) {
+                                             ClienteGateway clienteGateway, BackOfficePresenter backOfficePresenter) {
         this.backOfficeGateway = backOfficeGateway;
         this.backOfficeComprovanteGateway = backOfficeComprovanteGateway;
         this.clienteGateway = clienteGateway;
-        this.backOfficeAdapter = backOfficeAdapter;
+        this.backOfficePresenter = backOfficePresenter;
     }
     @Override
     @Transactional
@@ -57,22 +57,21 @@ public class BackOfficeRealizarOperacaoUseCase implements UseCase<CriacaoOperaca
     private BackOfficeOperacao realizarInativacao(Cliente cliente,CriacaoOperacaoBackOfficeDTO operacao) {
         cliente.setAtivo(false);
         clienteGateway.salvar(cliente);
-        return backOfficeAdapter.toEntity(operacao, cliente.getId());
+        return backOfficePresenter.toEntity(operacao, cliente.getId());
     }
 
 
     private BackOfficeOperacao realizarExclusao(Cliente cliente,CriacaoOperacaoBackOfficeDTO operacao) {
         clienteGateway.delete(cliente.getId());
-        return backOfficeAdapter.toEntity(operacao, cliente.getId());
+        return backOfficePresenter.toEntity(operacao, cliente.getId());
     }
 
     private BackOfficeOperacao realizarAnomizacao(Cliente cliente, CriacaoOperacaoBackOfficeDTO operacao) {
         cliente.setNome(UUID.randomUUID().toString());
         cliente.setSobrenome(UUID.randomUUID().toString());
-        cliente.setEmail(UUID.randomUUID() + "@anonimo.com");
         cliente.setCpf(UUID.randomUUID().toString());
         clienteGateway.salvar(cliente);
-        return backOfficeAdapter.toEntity(operacao, cliente.getId());
+        return backOfficePresenter.toEntity(operacao, cliente.getId());
     }
 
     private Cliente buscarCliente(CriacaoOperacaoBackOfficeDTO operacao) {

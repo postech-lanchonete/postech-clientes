@@ -1,4 +1,4 @@
-package br.com.postech.clientes.adapters.gateways;
+package br.com.postech.clientes.drivers.external;
 
 import br.com.postech.clientes.core.entities.BackOfficeOperacao;
 import br.com.postech.clientes.core.entities.Cliente;

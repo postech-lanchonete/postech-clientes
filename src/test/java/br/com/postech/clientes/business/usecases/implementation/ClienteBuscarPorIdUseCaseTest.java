@@ -1,6 +1,6 @@
 package br.com.postech.clientes.business.usecases.implementation;
 
-import br.com.postech.clientes.adapters.gateways.ClienteGateway;
+import br.com.postech.clientes.drivers.external.ClienteGateway;
 import br.com.postech.clientes.business.exceptions.NotFoundException;
 import br.com.postech.clientes.core.entities.Cliente;
 import org.junit.jupiter.api.Test;

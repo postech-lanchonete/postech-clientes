@@ -1,6 +1,6 @@
 package br.com.postech.clientes.business.usecases.implementation;
 
-import br.com.postech.clientes.adapters.gateways.BackOfficeGateway;
+import br.com.postech.clientes.drivers.external.BackOfficeGateway;
 import br.com.postech.clientes.core.entities.BackOfficeOperacao;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
